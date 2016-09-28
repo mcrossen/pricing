@@ -44,5 +44,10 @@ puts "optimal price: $" + (Hash[prices.uniq.map do |price|
 end].sort_by do |price, profit|
 	profit # sort the propsed prices based on profit, then reverse for descending order
 end.reverse.map do |price, profit|
-	price # only keep the proposed prices
+	if profit > 0
+		price # only keep the proposed prices
+	else
+		# tell the user if the product gives a negative profit at this price
+		price.to_s + " (negative profit)"
+	end
 end.first.to_s) # the first element in the array is the price with the maximum profit
